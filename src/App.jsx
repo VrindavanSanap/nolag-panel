@@ -1,44 +1,36 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
+import LoginPage from "./Loginpage";
+import Dashboard from "./Dashboard";
+
+// Add Google Fonts link for Poppins
+const link = document.createElement('link');
+link.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap';
+link.rel = 'stylesheet';
+document.head.appendChild(link);
 
 function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    if (username && password) {
-      console.log('Logging in with:', username, password);
-    } else {
-      console.log('Please enter both username and password.');
-    }
-  };
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
-    <div className="container">
-      <div className='left-section'>
-
-        <h1 className="welcome-heading">Welcome back!</h1>
-        <p className="credentials-text">Enter your Credentials to access your account</p>
-        <label className="label username-label" htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label className="label" htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={handleLogin}>Login</button>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              isAuthenticated ? <Navigate to="/dashboard" /> : <LoginPage on_login={() => setIsAuthenticated(true)} />
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+          />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
       </div>
-      <div className='right-section'></div>
-    </div>
+    </Router>
   );
 }
 

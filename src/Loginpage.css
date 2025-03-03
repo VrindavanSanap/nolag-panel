@@ -1,0 +1,249 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Poppins', 'Inter', 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  box-sizing: border-box;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.right-section {
+  flex: 1;
+  background: url('/src/assets/coding.jpg') center/cover no-repeat;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.8s ease-out;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  animation: fadeSlideUp 0.8s ease-out;
+}
+
+.welcome-heading {
+  text-align: left;
+  width: 80%;
+  margin: 10px 0 5px;
+  font-size: 28px;
+  color: #222;
+  font-weight: 700;
+  animation: fadeSlideUp 0.6s ease-out 0.2s both;
+}
+
+.credentials-text {
+  text-align: left;
+  width: 80%;
+  margin: 5px 0 60px;
+  font-size: 16px;
+  color: #666;
+  animation: fadeSlideUp 0.6s ease-out 0.3s both;
+}
+
+.label {
+  display: block;
+  text-align: left;
+  width: 80%;
+  margin: 10px 0 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  transition: color 0.3s ease;
+  animation: fadeSlideUp 0.6s ease-out 0.4s both;
+}
+
+input {
+  width: 80%;
+  padding: 12px;
+  margin: 5px 0 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  animation: fadeSlideUp 0.6s ease-out 0.5s both;
+}
+
+input:focus {
+  border-color: #3A5B22;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(58, 91, 34, 0.15);
+  transform: translateY(-1px);
+}
+
+button {
+  width: 80%;
+  padding: 14px;
+  border: none;
+  background-color: #3A5B22;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: fadeSlideUp 0.6s ease-out 0.6s both;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  background-color: #2e4a1b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s ease;
+}
+
+button:hover::after {
+  left: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(5%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading animation for button */
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  opacity: 0.7;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .left-section {
+    width: 100%;
+    flex: 1;
+    padding: 1.5rem;
+  }
+  
+  .right-section {
+    display: none;
+  }
+  
+  .welcome-heading {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .credentials-text {
+    margin-bottom: 40px;
+  }
+  
+  input, button, .label {
+    width: 90%;
+  }
+}
+
+/* Add smooth scrolling and better font rendering */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
