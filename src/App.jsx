@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./Loginpage";
-import Dashboard from "./Dashboard";
+import Dashboard from "./Dashboard.jsx";
 
 // Add Google Fonts link for Poppins
 const link = document.createElement('link');
